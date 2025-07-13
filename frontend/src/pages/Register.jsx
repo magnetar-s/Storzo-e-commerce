@@ -1,13 +1,19 @@
 import { useForm } from "react-hook-form";
 import { nanoid } from "nanoid";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { asyncregisteruser } from "../store/actions/userActions";
+import { useDispatch } from "react-redux";
 
 const Register = () => {
   const { register, reset, handleSubmit } = useForm();
-
+  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  
   const RegisterHandler = (user) => {
     user.id = nanoid();
-    console.log(user);
+    user.isAdmin = false;
+    dispatch(asyncregisteruser(user));
+    navigate("/login")
   };
 
   return (
@@ -21,11 +27,7 @@ const Register = () => {
           <p className="mt-5 font-medium text-[17px] text-[#DBDBDB]">
             Get access to your Orders, Wishlist and Recommendations
           </p>
-          <img
-            className="pl-5 mt-45"
-            src="/login_img_png.png"
-            alt=""
-          />
+          <img className="pl-5 mt-45" src="/login_img_png.png" alt="" />
         </div>
 
         {/* input....... */}
@@ -55,7 +57,7 @@ const Register = () => {
             </a>
             and{" "}
             <a href="#" className="text-[#2874F2]">
-               Privacy Policy.
+              Privacy Policy.
             </a>
           </small>
           <button className="w-full h-[50px] rounded mt-10 cursor-pointer text-[#FFFFFF] font-bold bg-[#FB641B] active:bg-[#fb661beb]">
