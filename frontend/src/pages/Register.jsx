@@ -19,7 +19,7 @@ const Register = () => {
   return (
     <form
       onSubmit={handleSubmit(RegisterHandler)}
-      className="flex items-center justify-center"
+      className="flex items-center justify-center mt-[110px]"
     >
       <div className="flex  w-[90%] xl:w-[55%]">
         <div className="hidden md:block bg-[#2874F0] w-[40%] p-10 text-[#FFFFFF]">
